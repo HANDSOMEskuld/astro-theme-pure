@@ -31,7 +31,7 @@ export const theme: ThemeUserConfig = {
   },
 
   // === Global configuration ===
-  titleDelimiter: '•',
+  titleDelimiter: 'â¢',
   prerender: true,
   npmCDN: 'https://cdn.jsdelivr.net/npm',
 
@@ -60,8 +60,8 @@ export const theme: ThemeUserConfig = {
   /** Configure the footer of your site. */
   footer: {
     // Year format
-    year: `© ${new Date().getFullYear()}`,
-    // year: `© 2019 - ${new Date().getFullYear()}`,
+    year: `Â© ${new Date().getFullYear()}`,
+    // year: `Â© 2019 - ${new Date().getFullYear()}`,
     links: [
       // Registration link
       {
@@ -81,7 +81,7 @@ export const theme: ThemeUserConfig = {
         pos: 2 // position set to 2 will be appended to copyright line
       }
     ],
-    /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
+    /** Enable displaying a âAstro & Pure theme poweredâ link in your siteâs footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
     social: { github: 'https://github.com/cworld1/astro-theme-pure' }
@@ -90,7 +90,7 @@ export const theme: ThemeUserConfig = {
   content: {
     /** External links configuration */
     externalLinks: {
-      content: ' ↗',
+      content: ' â',
       /** Properties for the external links element */
       properties: {
         style: 'user-select:none'
@@ -104,81 +104,82 @@ export const theme: ThemeUserConfig = {
 }
 
 export const integ: IntegrationUserConfig = {
-  // Links management (保留默认即可)
+  // Links management
+  // See: https://astro-pure.js.org/docs/integrations/links
   links: {
+    // Friend logbook
     logbook: [
-      { date: '2024-07-01', content: 'Lorem ipsum dolor sit amet.' },
+      { date: '2025-03-16', content: 'Is there a leakage?' },
+      { date: '2025-03-16', content: 'A leakage of what?' },
+      { date: '2025-03-16', content: 'I have a full seat of water, like, full of water!' },
+      { date: '2025-03-16', content: 'Must be the water.' },
+      { date: '2025-03-16', content: "Let's add that to the words of wisdom." }
     ],
+    // Yourself link info
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
       { name: 'Link', val: 'https://astro-pure.js.org/' },
       { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
     ],
+    // Cache avatars in `public/avatars/` to improve user experience.
     cacheAvatar: false
   },
-  
   // Enable page search function
   pagefind: true,
-  
-  // Add a random quote to the footer
+  // Add a random quote to the footer (default on homepage footer)
+  // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
   quote: {
+    // Hitokoto
+    // https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80
+    // server: 'https://v1.hitokoto.cn/?c=i',
+    // target: `(data) => (data.hitokoto || 'Error')`
+    // Quoteable API (down temporarily)
+    // https://github.com/lukePeavey/quotable
+    // server: 'https://api.quotable.io/quotes/random?maxLength=60',
+    // target: `(data) => data[0].content || 'Error'`
+    // DummyJSON
     server: 'https://dummyjson.com/quotes/random',
     target: `(data) => (data.quote.length > 80 ? \`\${data.quote.slice(0, 80)}...\` : data.quote || 'Error')`
   },
-  
   // UnoCSS typography
+  // See: https://unocss.dev/presets/typography
   typography: {
     class: 'prose text-base',
+    // The style of blockquote font, normal or italic (default to italic in typography)
     blockquoteStyle: 'italic',
+    // The style of inline code block, code or modern (default to code in typography)
     inlineCodeBlockStyle: 'modern'
   },
-  
-  // Lightbox
+  // A lightbox library that can add zoom effect
+  // See: https://astro-pure.js.org/docs/integrations/others#medium-zoom
   mediumZoom: {
-    enable: true,
+    enable: true, // disable it will not load the whole library
     selector: '.prose .zoomable',
     options: {
       className: 'zoomable'
     }
   },
-
-  // === 评论系统设置 ===
-  
-  // 1. 关闭 Waline (原主题默认开启的)
+  // Comment system
   waline: {
-    enable: false, // <--- 必须改为 false
+    enable: true,
+    // Server service link
     server: 'https://astro-theme-pure-waline.arthals.ink/',
+    // Refer https://waline.js.org/en/guide/features/emoji.html
     emoji: ['bmoji', 'weibo'],
+    // Refer https://waline.js.org/en/reference/client/props.html
     additionalConfigs: {
+      // search: false,
       pageview: true,
       comment: true,
       locale: {
         reaction0: 'Like',
-        placeholder: 'Welcome to comment.'
+        placeholder: 'Welcome to comment. (Email to receive replies. Login is unnecessary)'
       },
       imageUploader: false
     }
-  },
-
-  // 2. 开启 Giscus (填入您的参数)
-  giscus: {
-    enable: true,  // <--- 开启
-    repo: 'HANDSOMEskuld/blog-comments',
-    repoId: 'R_kgDOQfZ-gg',
-    category: 'Announcements',
-    categoryId: 'DIC_kwDOQfZ-gs4CzMN6',
-    mapping: 'url',
-    strict: false,
-    lazy: true,
-    reactionsEnabled: true,
-    emitMetadata: false,
-    inputPosition: 'top',
-    lang: 'en', // <--- 为了面向全球用户，建议这里强制设为 'en' (虽然您复制的代码是zh-CN)
-    loading: 'lazy',
   }
 }
-
 
 export const terms: CardListData = {
   title: 'Terms content',
