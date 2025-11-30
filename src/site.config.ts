@@ -104,82 +104,81 @@ export const theme: ThemeUserConfig = {
 }
 
 export const integ: IntegrationUserConfig = {
-  // Links management
-  // See: https://astro-pure.js.org/docs/integrations/links
+  // Links management (保留默认即可)
   links: {
-    // Friend logbook
     logbook: [
-      { date: '2025-03-16', content: 'Is there a leakage?' },
-      { date: '2025-03-16', content: 'A leakage of what?' },
-      { date: '2025-03-16', content: 'I have a full seat of water, like, full of water!' },
-      { date: '2025-03-16', content: 'Must be the water.' },
-      { date: '2025-03-16', content: "Let's add that to the words of wisdom." }
+      { date: '2024-07-01', content: 'Lorem ipsum dolor sit amet.' },
     ],
-    // Yourself link info
     applyTip: [
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
       { name: 'Link', val: 'https://astro-pure.js.org/' },
       { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
     ],
-    // Cache avatars in `public/avatars/` to improve user experience.
     cacheAvatar: false
   },
+  
   // Enable page search function
   pagefind: true,
-  // Add a random quote to the footer (default on homepage footer)
-  // See: https://astro-pure.js.org/docs/integrations/advanced#web-content-render
+  
+  // Add a random quote to the footer
   quote: {
-    // Hitokoto
-    // https://developer.hitokoto.cn/sentence/#%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80
-    // server: 'https://v1.hitokoto.cn/?c=i',
-    // target: `(data) => (data.hitokoto || 'Error')`
-    // Quoteable API (down temporarily)
-    // https://github.com/lukePeavey/quotable
-    // server: 'https://api.quotable.io/quotes/random?maxLength=60',
-    // target: `(data) => data[0].content || 'Error'`
-    // DummyJSON
     server: 'https://dummyjson.com/quotes/random',
     target: `(data) => (data.quote.length > 80 ? \`\${data.quote.slice(0, 80)}...\` : data.quote || 'Error')`
   },
+  
   // UnoCSS typography
-  // See: https://unocss.dev/presets/typography
   typography: {
     class: 'prose text-base',
-    // The style of blockquote font, normal or italic (default to italic in typography)
     blockquoteStyle: 'italic',
-    // The style of inline code block, code or modern (default to code in typography)
     inlineCodeBlockStyle: 'modern'
   },
-  // A lightbox library that can add zoom effect
-  // See: https://astro-pure.js.org/docs/integrations/others#medium-zoom
+  
+  // Lightbox
   mediumZoom: {
-    enable: true, // disable it will not load the whole library
+    enable: true,
     selector: '.prose .zoomable',
     options: {
       className: 'zoomable'
     }
   },
-  // Comment system
+
+  // === 评论系统设置 ===
+  
+  // 1. 关闭 Waline (原主题默认开启的)
   waline: {
-    enable: true,
-    // Server service link
+    enable: false, // <--- 必须改为 false
     server: 'https://astro-theme-pure-waline.arthals.ink/',
-    // Refer https://waline.js.org/en/guide/features/emoji.html
     emoji: ['bmoji', 'weibo'],
-    // Refer https://waline.js.org/en/reference/client/props.html
     additionalConfigs: {
-      // search: false,
       pageview: true,
       comment: true,
       locale: {
         reaction0: 'Like',
-        placeholder: 'Welcome to comment. (Email to receive replies. Login is unnecessary)'
+        placeholder: 'Welcome to comment.'
       },
       imageUploader: false
     }
+  },
+
+  // 2. 开启 Giscus (填入您的参数)
+  giscus: {
+    enable: true,  // <--- 开启
+    repo: 'HANDSOMEskuld/blog-comments',
+    repoId: 'R_kgDOQfZ-gg',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDOQfZ-gs4CzMN6',
+    mapping: 'url',
+    strict: false,
+    lazy: true,
+    reactionsEnabled: true,
+    emitMetadata: false,
+    inputPosition: 'top',
+    lang: 'en', // <--- 为了面向全球用户，建议这里强制设为 'en' (虽然您复制的代码是zh-CN)
+    loading: 'lazy',
   }
 }
+
 
 export const terms: CardListData = {
   title: 'Terms content',
