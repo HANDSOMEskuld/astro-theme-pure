@@ -54,7 +54,9 @@ const renderContent = async (post: CollectionEntry<'blog'>, site: URL) => {
 }
 
 const GET = async (context: AstroGlobal) => {
-  const allPostsByDate = sortMDByDate(await getBlogCollection()) as CollectionEntry<'blog'>[]
+  const allPosts = sortMDByDate(await getBlogCollection()) as CollectionEntry<'blog'>[]
+  // Filter for English posts only
+  const allPostsByDate = allPosts.filter((post) => post.id.startsWith('en/'))
   const siteUrl = context.site ?? new URL(import.meta.env.SITE)
 
   return rss({
@@ -68,14 +70,18 @@ const GET = async (context: AstroGlobal) => {
     description: config.description,
     site: import.meta.env.SITE,
     items: await Promise.all(
-      allPostsByDate.map(async (post) => ({
-        pubDate: post.data.publishDate,
-        link: `/blog/${post.id}`,
-        customData: `<h:img src="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />
+      allPostsByDate.map(async (post) => {
+        const [lang, ...slugParts] = post.id.split('/')
+        const slug = slugParts.join('/')
+        return {
+          pubDate: post.data.publishDate,
+          link: `/${lang}/blog/${slug}`,
+          customData: `<h:img src="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />
           <enclosure url="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />`,
-        content: await renderContent(post, siteUrl),
-        ...post.data
-      }))
+          content: await renderContent(post, siteUrl),
+          ...post.data
+        }
+      })
     )
   })
 }

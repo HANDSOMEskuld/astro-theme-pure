@@ -7,14 +7,15 @@ import { Icon } from '../user'
 const footerConf = config.footer
 let social = footerConf.social || {}
 
-// If the list does not contain rss, add it
-social.rss = {
-  label: 'RSS',
-  url: '/rss.xml'
-}
-
 const footerLink1 = footerConf.links?.filter(({ pos }) => pos === 1) || []
 const lang = getLangFromUrl(Astro.url)
+
+// Set RSS URL based on current language
+const rssUrl = lang === 'zh' ? '/zh/rss.xml' : '/rss.xml'
+social.rss = {
+  label: 'RSS',
+  url: rssUrl
+}
 ---
 
 <footer class='mx-auto mb-5 mt-16 w-full'>

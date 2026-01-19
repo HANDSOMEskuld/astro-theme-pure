@@ -31,6 +31,18 @@ export interface ChangelogEntry {
  */
 export const changelogEntries: ChangelogEntry[] = [
     {
+        date: '2026-01-20',
+        category: 'feature',
+        zh: '🌐 <b>RSS国际化：</b> 完成了RSS界面的国际化支持。',
+        en: '🌐 <b>RSS Internationalization:</b> Completed internationalization support for RSS interface.'
+    },
+    {
+        date: '2026-01-20',
+        category: 'performance',
+        zh: '📁 <b>图片存储优化：</b> 统一了文章图片的存储目录，将中文和英文的图片都统一放置在assets目录下。',
+        en: '📁 <b>Image Storage Optimization:</b> Unified article image storage directory, placing both Chinese and English images in the assets directory.'
+    },
+    {
         date: '2026-01-14',
         category: 'content',
         zh: '📝 <b>新增文章：</b> 发布了《交易笔记：TCL科技减仓一半，两倍做多恒生指数止盈清仓。》。',
