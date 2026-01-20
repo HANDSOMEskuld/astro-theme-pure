@@ -32,12 +32,18 @@ export interface ChangelogEntry {
 export const changelogEntries: ChangelogEntry[] = [
     {
         date: '2026-01-20',
+        category: 'content',
+        zh: '📝 <b>新增文章：</b> 发布了《生活是牢笼，而大多时候，我们是温水里的青蛙》。',
+        en: '📝 <b>New Article:</b> Published "Life is a Cage, and We Are the Boiling Frogs".'
+    },
+    {
+        date: '2026-01-19',
         category: 'feature',
         zh: '🌐 <b>RSS国际化：</b> 完成了RSS界面的国际化支持。',
         en: '🌐 <b>RSS Internationalization:</b> Completed internationalization support for RSS interface.'
     },
     {
-        date: '2026-01-20',
+        date: '2026-01-19',
         category: 'performance',
         zh: '📁 <b>图片存储优化：</b> 统一了文章图片的存储目录，将中文和英文的图片都统一放置在assets目录下。',
         en: '📁 <b>Image Storage Optimization:</b> Unified article image storage directory, placing both Chinese and English images in the assets directory.'
