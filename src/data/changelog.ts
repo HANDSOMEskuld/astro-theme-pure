@@ -31,6 +31,12 @@ export interface ChangelogEntry {
  */
 export const changelogEntries: ChangelogEntry[] = [
     {
+        date: '2026-01-28',
+        category: 'content',
+        zh: '📝 <b>新增文章：</b> 发布了《我的软件清单》。',
+        en: '📝 <b>New Article:</b> Published "My Digital Toolkit: A Curated Software List".'
+    },
+    {
         date: '2026-01-20',
         category: 'content',
         zh: '📝 <b>新增文章：</b> 发布了《生活是牢笼，而大多时候，我们是温水里的青蛙》。',
