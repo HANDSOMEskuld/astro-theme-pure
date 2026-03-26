@@ -23,7 +23,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       heroImage: z
         .object({
-          src: image(),
+          src: z.union([image(), z.string()]),
           alt: z.string().optional(),
           inferSize: z.boolean().optional(),
           width: z.number().optional(),
@@ -65,7 +65,7 @@ const stocks = defineCollection({
       // Display
       heroImage: z
         .object({
-          src: image(),
+          src: z.union([image(), z.string()]),
           alt: z.string().optional(),
           inferSize: z.boolean().optional(),
           width: z.number().optional(),
