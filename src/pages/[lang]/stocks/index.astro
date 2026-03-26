@@ -1,6 +1,5 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import { languages, useTranslations } from '@/i18n/ui'
 
@@ -36,7 +35,6 @@ const meta = {
 const totalTrades = langStocks.length
 const closedTrades = langStocks.filter((s) => s.data.status === 'closed').length
 const openTrades = langStocks.filter((s) => s.data.status === 'open').length
-const partialTrades = langStocks.filter((s) => s.data.status === 'partial').length
 
 // Calculate average P&L
 const tradesWithPL = langStocks.filter((s) => s.data.profitLoss !== undefined)

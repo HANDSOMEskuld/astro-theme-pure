@@ -1,8 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import type { CollectionEntry } from 'astro:content'
 import { getCollection, render } from 'astro:content'
-import { languages, useTranslations } from '@/i18n/ui'
+import { useTranslations } from '@/i18n/ui'
 import Copyright from 'packages/pure/components/pages/Copyright.astro'
 
 import { Hero } from 'astro-pure/components/pages'
@@ -30,10 +29,10 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 
 const { stock } = Astro.props
-const { lang, slug } = Astro.params
+const { lang } = Astro.params
 const t = useTranslations(lang as any)
 
-const { Content, headings, remarkPluginFrontmatter } = await render(stock)
+const { Content, remarkPluginFrontmatter } = await render(stock)
 
 // Get all stocks to find related trades
 const allStocks = await getCollection('stocks')

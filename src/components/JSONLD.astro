@@ -7,7 +7,6 @@ type Props = SiteMeta
 
 const { title, description, articleDate, ogImage } = Astro.props
 
-const siteTitle = `${title} ${config.titleDelimiter} ${config.title}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url).href
 
@@ -85,4 +84,4 @@ if (pathSegments.length > 0) {
 }
 ---
 
-{schema.map((s) => <script type='application/ld+json' set:html={JSON.stringify(s)} />)}
+{schema.map((s) => <script is:inline type='application/ld+json' set:html={JSON.stringify(s)} />)}

@@ -1,9 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
-import { useTranslations } from '@/i18n/ui'
 
 const { lang } = Astro.params
-const t = useTranslations(lang as any)
 
 const stocks = await getCollection('stocks')
 // Filter stocks for current language and non-draft
