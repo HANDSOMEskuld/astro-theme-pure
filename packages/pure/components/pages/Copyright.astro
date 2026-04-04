@@ -99,6 +99,14 @@ const t = useTranslations(lang in ui ? lang : defaultLang)
       >
         <Icon class='size-5' name='qrcode' />
       </button>
+      <button
+        id='copy-post'
+        aria-label={t('copyright.copy_post')}
+        data-copy-success={t('copyright.copy_post_success')}
+        class='group rounded-full bg-muted p-1 text-muted-foreground transition-colors hover:text-primary sm:p-1.5'
+      >
+        <Icon class='size-5' name='copy' />
+      </button>
       {
         config.content.share.map((share) => (
           <a
@@ -155,6 +163,20 @@ const t = useTranslations(lang in ui ? lang : defaultLang)
   const getQRCode = document.getElementById('get-qrcode')
   const qrcodeContainer = document.getElementById('qrcode-container')
   getQRCode?.addEventListener('click', () => qrcodeContainer?.classList.toggle('expanded'))
+
+  // Copy post content
+  const copyPost = document.getElementById('copy-post')
+  copyPost?.addEventListener('click', () => {
+    const content = document.getElementById('content')
+    if (content) {
+      navigator.clipboard.writeText(content.innerText)
+      showToast({
+        message: copyPost.getAttribute('data-copy-success') || 'Copied!',
+        type: 'success',
+        icon: 'copy'
+      })
+    }
+  })
 
   // Open donation modal
   const openDonationBtn = document.getElementById('open-donation-modal')
